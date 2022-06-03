@@ -1,5 +1,6 @@
-package cn.ipangbo.news.entity.article;
+package cn.ipangbo.news.entity.article.vo;
 
+import cn.ipangbo.news.entity.article.vo.GetAllArticleVo;
 import lombok.Builder;
 import lombok.Data;
 
