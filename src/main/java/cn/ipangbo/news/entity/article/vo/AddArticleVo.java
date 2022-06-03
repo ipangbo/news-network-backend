@@ -1,6 +1,7 @@
-package cn.ipangbo.news.entity.article;
+package cn.ipangbo.news.entity.article.vo;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,10 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-@TableName("article")
-public class Article {
-    @TableId(type = IdType.AUTO)
-    private Integer articleId;
+public class AddArticleVo {
     private String articleTitle;
     private String articleAuthor;
     private String articleContentJson;
@@ -21,8 +19,4 @@ public class Article {
     private int articleType;
     private int articleCategory;
     private int articleDraft;
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime articleCreateTime;
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime articleModifyTime;
 }

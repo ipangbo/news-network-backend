@@ -29,4 +29,9 @@ public class ArticleServiceImpl implements ArticleService {
         Page<Article> page = new Page<>(current, size);
         return articleMapper.selectPage(page, null).getRecords();
     }
+
+    @Override
+    public int addArticle(Article article) {
+        return articleMapper.insert(article);
+    }
 }
