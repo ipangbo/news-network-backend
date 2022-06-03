@@ -9,5 +9,10 @@ class NewsNetworkBackendApplicationTests {
     @Test
     void contextLoads() {
     }
+    
+    @Test
+    void testPrintln() {
+        System.out.println("test");
+    }
 
 }
