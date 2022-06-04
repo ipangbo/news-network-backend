@@ -34,4 +34,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int addArticle(Article article) {
         return articleMapper.insert(article);
     }
+
+    @Override
+    public int modifyArticle(Article article) {
+        return articleMapper.updateById(article);
+    }
 }

@@ -11,4 +11,6 @@ public interface ArticleService {
     List<Article> getAllArticleByPages(int current, int size);
 
     int addArticle(Article article);
+
+    int modifyArticle(Article article);
 }

@@ -68,4 +68,13 @@ public class ArticleController {
             return MessageModel.builder().status(400).message("添加文章失败").build();
         }
     }
+
+    @PostMapping("modifyArticle")
+    public MessageModel modifyArticle(@RequestBody Article article) {
+        if (articleService.modifyArticle(article) != 0) {
+            return MessageModel.builder().status(200).build();
+        } else {
+            return MessageModel.builder().status(400).message("修改文章失败").build();
+        }
+    }
 }
