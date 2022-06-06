@@ -26,8 +26,9 @@ public class ArticleController {
     public GetRecentVO getRecent() {
         List<Article> articleList = articleService.getRecent();
         List<GetRecentArticleVO> voList = new ArrayList<>();
+        GetRecentArticleVO articleVO = null;
         for (Article article : articleList) {
-            GetRecentArticleVO articleVO = new GetRecentArticleVO();
+            articleVO = new GetRecentArticleVO();
             BeanUtils.copyProperties(article, articleVO);
             voList.add(articleVO);
         }
@@ -42,8 +43,9 @@ public class ArticleController {
     public GetAllVO getAll(int page) {
         List<Article> articleList = articleService.getAllArticleByPages(page, 10);
         List<GetAllArticleVO> voList = new ArrayList<>();
+        GetAllArticleVO articleVO = null;
         for (Article article : articleList) {
-            GetAllArticleVO articleVO = new GetAllArticleVO();
+            articleVO = new GetAllArticleVO();
             BeanUtils.copyProperties(article, articleVO);
             voList.add(articleVO);
         }
