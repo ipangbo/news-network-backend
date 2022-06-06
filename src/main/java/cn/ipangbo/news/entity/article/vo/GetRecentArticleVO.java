@@ -7,11 +7,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class GetAllArticleVo {
+public class GetRecentArticleVO {
     private int articleId;
     private String articleTitle;
-    private int articleType;
-    private int articleCategory;
-    private int articleDraft;
     private LocalDateTime articleModifyTime;
 }

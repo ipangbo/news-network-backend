@@ -2,10 +2,10 @@ package cn.ipangbo.news.controller;
 
 import cn.ipangbo.news.entity.MessageModel;
 import cn.ipangbo.news.entity.article.*;
-import cn.ipangbo.news.entity.article.vo.GetAllArticleVo;
-import cn.ipangbo.news.entity.article.vo.GetAllVo;
-import cn.ipangbo.news.entity.article.vo.GetRecentArticleVo;
-import cn.ipangbo.news.entity.article.vo.GetRecentVo;
+import cn.ipangbo.news.entity.article.vo.GetAllArticleVO;
+import cn.ipangbo.news.entity.article.vo.GetAllVO;
+import cn.ipangbo.news.entity.article.vo.GetRecentArticleVO;
+import cn.ipangbo.news.entity.article.vo.GetRecentVO;
 import cn.ipangbo.news.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -22,29 +22,29 @@ public class ArticleController {
     ArticleService articleService;
 
     @GetMapping("getRecent")
-    public GetRecentVo getRecent() {
+    public GetRecentVO getRecent() {
         List<Article> articleList = articleService.getRecent();
-        List<GetRecentArticleVo> voList = new ArrayList<>();
+        List<GetRecentArticleVO> voList = new ArrayList<>();
         for (Article article : articleList) {
-            voList.add(GetRecentArticleVo.builder()
+            voList.add(GetRecentArticleVO.builder()
                     .articleId(article.getArticleId())
                     .articleTitle(article.getArticleTitle())
                     .articleModifyTime(article.getArticleModifyTime())
                     .build());
         }
         if (voList.size() != 0) {
-            return GetRecentVo.builder().status(200).data(voList).build();
+            return GetRecentVO.builder().status(200).data(voList).build();
         } else {
-            return GetRecentVo.builder().status(404).message("未找到最近文章").build();
+            return GetRecentVO.builder().status(404).message("未找到最近文章").build();
         }
     }
 
     @GetMapping("getAll")
-    public GetAllVo getAll(int page) {
+    public GetAllVO getAll(int page) {
         List<Article> articleList = articleService.getAllArticleByPages(page, 10);
-        List<GetAllArticleVo> voList = new ArrayList<>();
+        List<GetAllArticleVO> voList = new ArrayList<>();
         for (Article article : articleList) {
-            voList.add(GetAllArticleVo.builder()
+            voList.add(GetAllArticleVO.builder()
                     .articleId(article.getArticleId())
                     .articleTitle(article.getArticleTitle())
                     .articleType(article.getArticleType())
@@ -54,9 +54,9 @@ public class ArticleController {
                     .build());
         }
         if (voList.size() != 0) {
-            return GetAllVo.builder().status(200).data(voList).build();
+            return GetAllVO.builder().status(200).data(voList).build();
         } else {
-            return GetAllVo.builder().status(404).message("未找到任何文章").build();
+            return GetAllVO.builder().status(404).message("未找到任何文章").build();
         }
     }
 
