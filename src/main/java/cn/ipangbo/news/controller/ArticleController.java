@@ -8,6 +8,7 @@ import cn.ipangbo.news.entity.article.vo.GetRecentArticleVO;
 import cn.ipangbo.news.entity.article.vo.GetRecentVO;
 import cn.ipangbo.news.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,12 +26,10 @@ public class ArticleController {
     public GetRecentVO getRecent() {
         List<Article> articleList = articleService.getRecent();
         List<GetRecentArticleVO> voList = new ArrayList<>();
+        GetRecentArticleVO articleVO = GetRecentArticleVO.builder().build();
         for (Article article : articleList) {
-            voList.add(GetRecentArticleVO.builder()
-                    .articleId(article.getArticleId())
-                    .articleTitle(article.getArticleTitle())
-                    .articleModifyTime(article.getArticleModifyTime())
-                    .build());
+            BeanUtils.copyProperties(article, articleVO);
+            voList.add(articleVO);
         }
         if (voList.size() != 0) {
             return GetRecentVO.builder().status(200).data(voList).build();
@@ -43,15 +42,10 @@ public class ArticleController {
     public GetAllVO getAll(int page) {
         List<Article> articleList = articleService.getAllArticleByPages(page, 10);
         List<GetAllArticleVO> voList = new ArrayList<>();
+        GetAllArticleVO articleVO = GetAllArticleVO.builder().build();
         for (Article article : articleList) {
-            voList.add(GetAllArticleVO.builder()
-                    .articleId(article.getArticleId())
-                    .articleTitle(article.getArticleTitle())
-                    .articleType(article.getArticleType())
-                    .articleCategory(article.getArticleCategory())
-                    .articleDraft(article.getArticleDraft())
-                    .articleModifyTime(article.getArticleModifyTime())
-                    .build());
+            BeanUtils.copyProperties(article, articleVO);
+            voList.add(articleVO);
         }
         if (voList.size() != 0) {
             return GetAllVO.builder().status(200).data(voList).build();
