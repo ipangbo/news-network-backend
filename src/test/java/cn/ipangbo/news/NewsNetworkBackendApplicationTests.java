@@ -12,7 +12,7 @@ class NewsNetworkBackendApplicationTests {
     
     @Test
     void testPrintln() {
-        System.out.println("test");
+        System.out.println("test1");
     }
 
 }
