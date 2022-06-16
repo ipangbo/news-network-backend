@@ -13,4 +13,6 @@ public interface ArticleService {
     int addArticle(Article article);
 
     int modifyArticle(Article article);
+
+    Long getArticleCount();
 }

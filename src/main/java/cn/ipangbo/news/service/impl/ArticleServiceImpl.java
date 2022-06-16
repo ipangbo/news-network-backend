@@ -39,4 +39,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int modifyArticle(Article article) {
         return articleMapper.updateById(article);
     }
+
+    @Override
+    public Long getArticleCount() {
+        return articleMapper.selectCount(null);
+    }
 }

@@ -14,8 +14,10 @@ import java.time.LocalDateTime;
 public class GetAllArticleVO {
     private int articleId;
     private String articleTitle;
+    private String articleAuthor;
     private int articleType;
     private int articleCategory;
     private int articleDraft;
+    private LocalDateTime articleCreateTime;
     private LocalDateTime articleModifyTime;
 }

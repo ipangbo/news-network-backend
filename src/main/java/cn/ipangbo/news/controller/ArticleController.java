@@ -26,9 +26,8 @@ public class ArticleController {
     public GetRecentVO getRecent() {
         List<Article> articleList = articleService.getRecent();
         List<GetRecentArticleVO> voList = new ArrayList<>();
-        GetRecentArticleVO articleVO = null;
         for (Article article : articleList) {
-            articleVO = new GetRecentArticleVO();
+            GetRecentArticleVO articleVO = new GetRecentArticleVO();
             BeanUtils.copyProperties(article, articleVO);
             voList.add(articleVO);
         }
@@ -43,9 +42,8 @@ public class ArticleController {
     public GetAllVO getAll(int page) {
         List<Article> articleList = articleService.getAllArticleByPages(page, 10);
         List<GetAllArticleVO> voList = new ArrayList<>();
-        GetAllArticleVO articleVO = null;
         for (Article article : articleList) {
-            articleVO = new GetAllArticleVO();
+            GetAllArticleVO articleVO = new GetAllArticleVO();
             BeanUtils.copyProperties(article, articleVO);
             voList.add(articleVO);
         }
@@ -72,5 +70,10 @@ public class ArticleController {
         } else {
             return MessageModel.builder().status(400).message("修改文章失败").build();
         }
+    }
+
+    @GetMapping("getArticleCount")
+    public MessageModel getArticleCount() {
+        return MessageModel.builder().status(200).data(articleService.getArticleCount().toString()).build();
     }
 }
