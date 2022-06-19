@@ -6,12 +6,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.annotation.Resource;
 
 @SpringBootTest
-public class ArticleServiceTest {
+public class CategoryServiceTest {
     @Resource
-    ArticleService articleService;
+    CategoryService categoryService;
 
     @Test
-    public void getArticleCountTest() {
-        System.out.println(articleService.getArticleCount());
+    void getCategoriesByAssociatedTypeTest() {
+        System.out.println(categoryService.getCategoriesByAssociatedType(2));
     }
 }

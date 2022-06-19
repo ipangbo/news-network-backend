@@ -2,10 +2,7 @@ package cn.ipangbo.news.controller;
 
 import cn.ipangbo.news.entity.MessageModel;
 import cn.ipangbo.news.entity.article.*;
-import cn.ipangbo.news.entity.article.vo.GetAllArticleVO;
-import cn.ipangbo.news.entity.article.vo.GetAllVO;
-import cn.ipangbo.news.entity.article.vo.GetRecentArticleVO;
-import cn.ipangbo.news.entity.article.vo.GetRecentVO;
+import cn.ipangbo.news.entity.article.vo.*;
 import cn.ipangbo.news.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -59,7 +56,7 @@ public class ArticleController {
         if (articleService.addArticle(article) != 0) {
             return MessageModel.builder().status(200).build();
         } else {
-            return MessageModel.builder().status(400).message("添加文章失败").build();
+            return MessageModel.builder().status(500).message("添加文章失败").build();
         }
     }
 
@@ -68,12 +65,21 @@ public class ArticleController {
         if (articleService.modifyArticle(article) != 0) {
             return MessageModel.builder().status(200).build();
         } else {
-            return MessageModel.builder().status(400).message("修改文章失败").build();
+            return MessageModel.builder().status(500).message("修改文章失败").build();
         }
     }
 
     @GetMapping("getArticleCount")
     public MessageModel getArticleCount() {
         return MessageModel.builder().status(200).data(articleService.getArticleCount().toString()).build();
+    }
+
+    @PostMapping("deleteArticle")
+    public MessageModel deleteArticle(@RequestBody Article article) {
+        if (articleService.deleteArticleById(article.getArticleId()) == 1) {
+            return MessageModel.builder().status(200).build();
+        } else {
+            return MessageModel.builder().status(500).message("删除文章失败").build();
+        }
     }
 }

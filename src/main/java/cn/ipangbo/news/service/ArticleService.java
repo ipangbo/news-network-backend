@@ -15,4 +15,6 @@ public interface ArticleService {
     int modifyArticle(Article article);
 
     Long getArticleCount();
+
+    int deleteArticleById(int id);
 }

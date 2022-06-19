@@ -44,4 +44,9 @@ public class ArticleServiceImpl implements ArticleService {
     public Long getArticleCount() {
         return articleMapper.selectCount(null);
     }
+
+    @Override
+    public int deleteArticleById(int id) {
+        return articleMapper.deleteById(Article.builder().articleId(id).build());
+    }
 }
